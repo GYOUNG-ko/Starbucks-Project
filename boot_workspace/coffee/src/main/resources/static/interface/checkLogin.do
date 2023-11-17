@@ -1,0 +1,1 @@
+{"result_code":"FAIL","error_msg":"","alert_msg":"","location_href":"","location_replace":"","custom_script":"","total_cnt":0,"data":null,"result_api_code":""}
