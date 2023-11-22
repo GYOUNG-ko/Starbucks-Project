@@ -59,7 +59,6 @@ INDEX VERSION 1.134+C:\javas\starbucksProject\boot_workspace\.metadata\.plugins\
 3196195464.index
 2425436524.index
 1350452106.index
-4175192308.index
 3943438593.index
 3642151691.index
 1144561827.index
