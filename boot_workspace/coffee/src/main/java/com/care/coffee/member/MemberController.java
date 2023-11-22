@@ -42,6 +42,7 @@ public class MemberController {
 		System.out.println(phone);
 		System.out.println(name);
 		System.out.println(birthday);
+	
 		String result = service.checkMember(name, birthday, phone, model);
 		 
 		if(result.equals("memberCertify")) {
@@ -194,7 +195,7 @@ public class MemberController {
 	}
 		
 	
-	@PostMapping("/mem/modifyProc")
+	@PostMapping("/modifyProc")
 	public String modifyProc(MemberDTO member, String password, Model model, RedirectAttributes ra) {
 		String sessionId = (String)session.getAttribute("userId");
 		/*
@@ -202,9 +203,10 @@ public class MemberController {
 		 */
 		
 		member.setUserId(sessionId);
-		String msg = service.modifyProc(member, password);
+		String msg = service.modifyProc(member);
 		if(msg.equals("회원 수정 완료")) {
 			ra.addFlashAttribute("msg",msg);
+			session.invalidate();
 			return "redirect:/index";
 		}else if(msg.equals("비밀번호 확인 후 다시 입력하세요.")) {
 			ra.addFlashAttribute("msg",msg);

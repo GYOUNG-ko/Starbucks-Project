@@ -49,15 +49,36 @@
 				
 			</header>
 
-			<article class="notice_view_info_inner">${board.content }</article>
-
-			<div class="btn_notice_wrap">
-				<p class="btn_notice_list">
-					<a href="/board/boardForm">목록</a>
-					<button type="button" onclick="location.href='/board/boardModify?no=${board.no}'">수정</button>
-					<button type="button" onclick="deleteCheck()">삭제</button>
-				</p>
-			</div>
+			<c:choose>
+				<c:when test="${sessionScope.userId eq 'admin'}">
+					<article class="notice_view_info_inner">${board.content }</article>
+					<div class="btn_notice_wrap">
+						<p class="btn_notice_list">
+							<a href="/board/boardForm">목록</a>
+						</p>
+					</div>
+					<div class="btn_notice_wrap">
+						<p class="btn_notice_list">
+							<a href="/board/boardModify?no=${board.no}">수정</a>
+						</p>
+					</div>
+					<div class="btn_notice_wrap">
+						<p class="btn_notice_list">
+							<a onclick="deleteCheck()">삭제</a>
+						</p>
+					</div>
+					
+							
+				</c:when>
+				<c:otherwise>
+					<article class="notice_view_info_inner">${board.content }</article>
+					<div class="btn_notice_wrap">
+						<p class="btn_notice_list">
+							<a href="/board/boardForm">목록</a>
+						</p>
+					</div>
+				</c:otherwise>
+			</c:choose>
 
 		</section>
 		<table summary="새소식 윗글, 아랫글" class="pn_content_tb">

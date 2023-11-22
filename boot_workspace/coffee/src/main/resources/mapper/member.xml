@@ -35,7 +35,6 @@ window - preferences - Maven - "Download Artifact Javadoc" check
 		select B.name GRADE_NAME, A.* 
 		from member A, grade B 
 		where user_id = #{userId} AND A.grade=B.no
-
 	</select>
 	
 	<select id= "searchId"  >

@@ -148,7 +148,7 @@
 		            
 		            <br><br>
 		            <input type="button" class="btn" value="회원수정" onclick="allCheck()">
-		            <input type="button" class="btn" value="취소" onclick="location.href='/mem_memberInfo'">
+		            <input type="button" class="btn" value="취소" onclick="location.href='/admin_memberInfo'">
 		
 		        </form>
 		    </div>

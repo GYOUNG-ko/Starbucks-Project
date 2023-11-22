@@ -53,9 +53,9 @@
 				var userId = $("#userId").val();
 				var name = $("#name").val();
 		        var phone = $("#phone").val();
-		       	alert("userId"+userId);
+		       	/* alert("userId"+userId);
 		        alert("name"+name);
-		        alert("phone"+phone);
+		        alert("phone"+phone); */
 		        location.href="newPw";
 		        // 서버로부터 userId 가져오기
 		        

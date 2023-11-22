@@ -2171,7 +2171,7 @@ translateY(
 								<div class="ms_user_stat_btns">
 									<ul>
 										<li><a href="./reward.do">리워드 및 혜택</a></li>
-										<li><a href="./reward_star_history.do">별 히스토리</a></li>
+										<li><a href="/mem/myinfo_delete">회원탈퇴</a></li>
 										<li class="btn_black"><a href="myinfo_modify">개인정보
 												수정</a></li>
 										<li class="btn_gray"><a class="gray"
@@ -2593,8 +2593,6 @@ translateY(
 			<div></div>
 		</div>
 	</div>
-
-<c:import url="/footer"/>
 
 <c:import url="/footer"/>
 </div>

@@ -116,7 +116,7 @@ $(document).ready(function() {
 				</tr>
 				<tr>
 					<th>상품내용</th>
-					<td colspan="2"><textarea type="text" name="content" rows="6" cols="25">${list.content }</textarea></td>
+					<td colspan="2"><textarea type="text" name="content">${list.content }</textarea></td>
 				</tr>
 				<tr>
 					<th>용량</th>
@@ -173,7 +173,7 @@ $(document).ready(function() {
 				<tr>
 					<th>사진</th>
 					<%-- <td><input type="text" name="picture1" value="${list.picture1 }" size="20"></td> --%>
-					<td colspan="2"><textarea type="text" name="picture1" rows="6" cols="25">
+					<td colspan="2"><textarea type="text" name="picture1" rows="5" cols="25">
 					${list.picture1 }</textarea></td>
 				</tr>
 				<tr>

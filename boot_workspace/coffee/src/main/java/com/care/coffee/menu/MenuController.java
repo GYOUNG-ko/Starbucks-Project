@@ -67,6 +67,7 @@ public class MenuController {
 							@RequestParam("prodNum") int prodNum,
 							@RequestParam("count") int count) {
 		String result = service.cartInsert(userId, count, prodNum);
+		System.out.println("result : "+result);
 		
 		if ("장바구니 등록 완료".equals(result)) {
 			return "success";
@@ -80,6 +81,7 @@ public class MenuController {
 	
 	@RequestMapping("cart/{userId}")
 	public String cart(@PathVariable("userId") String userId, Model model) {
+//		service.menuList(model);
 		service.cartList(userId, model);
 		return "menu/cart";
 	}
@@ -114,10 +116,12 @@ public class MenuController {
 			@RequestParam("sessionId") String userId) {
 		System.out.println("updateCartQuantity");
 		String result = "성공/"+itemID+"/"+quantity+"/"+userId;
+		
+		
 		return ResponseEntity.ok(result);
 	}
 	
-//	장바구니 수량 변경 (Controller)
+//	장바구니 수량 변경
 	@PostMapping("cart/update")
 	public String updateCart(CartDTO cart) {
 		service.modifyCount(cart);
@@ -131,17 +135,19 @@ public class MenuController {
 //		<input type="hidden" name="userId" value="${sessionScope.userId }">
 //	</form>
 	
-//	장바구니 삭제 (Controller)
+//	장바구니 삭제
 	@PostMapping("cart/delete")
 	public String deleteCart(CartDTO cart, String userId) {
 		service.deleteCart(cart.getProdNum(), userId);
 		return "redirect:/menu/cart/" + cart.getUserId();
 	}
 	
-	@ResponseBody // 배열로 여러번 반복하여 삭제
+	@ResponseBody
 	@PostMapping("cart/selectDelete")
 	public int selectDelete(String sessionId, 
 			@RequestParam(value="chbox[]") List<String> chArr, CartDTO cart) throws Exception {
+		System.out.println("진입");
+		//service.deleteCart(cart.getProdNum(), cart.getUserId());
 		int result = 0;
 		int prodNum = 0;
 		
@@ -151,9 +157,10 @@ public class MenuController {
 			for(String i : chArr) {
 				prodNum = Integer.parseInt(i);
 				cart.setProdNum(prodNum);
-				result = service.deleteCart(prodNum, sessionId); // 코드 재사용
+				result = service.deleteCart(prodNum, sessionId);
 			}
 		}
+		System.out.println(result);
 		return result;
 	}
 	

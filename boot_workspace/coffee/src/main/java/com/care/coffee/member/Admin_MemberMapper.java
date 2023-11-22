@@ -16,7 +16,7 @@ public interface Admin_MemberMapper {
 
 	int admin_modifyProc(MemberDTO member);
 
-	int admin_deleteProc(String userId);
+	int admin_deleteProc(MemberDTO member, String userId);
 	
 	MemberDTO login(String userId);
 

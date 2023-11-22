@@ -16,11 +16,9 @@
 <head>
 <style type="text/css">
 	table {
-		width: 430px;
-    	height: 660px;
 		border: 1px solid #000; /* 테두리 폭, 스타일, 색상 순서대로 설정 */
 		margin: 20px; /* 상하좌우 20px의 외부 여백 설정 */
-		/* border-collapse: collapse; */ /* 테두리 충돌 모델 설정 */
+		border-collapse: collapse; /* 테두리 충돌 모델 설정 */
 		border-collapse: separate; /* 테두리 분리 모델 설정 */
     	border-spacing: 5px; /* 셀 간격 설정 */
     	border-radius: 10px; /* 테두리 둥글게 만들기 */
@@ -42,7 +40,7 @@
 	<h1>상세페이지</h1>
 	<table border='1'>
 		<tr>
-			<th style="width: 110px;">NO</th>
+			<th>NO</th>
 			<td>${list.id }</td>
 		</tr>
 		<tr>
@@ -63,7 +61,7 @@
 		</tr>
 		<tr>
 			<th>상품설명</th>
-			<td style="word-wrap: break-word;">${list.content }</td>
+			<td>${list.content }</td>
 		</tr>
 		<tr>
 			<th>상품용량</th>

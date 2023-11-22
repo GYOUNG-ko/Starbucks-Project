@@ -77,7 +77,10 @@ window - preferences - Maven - "Download Artifact Javadoc" check
 	
 	
 	<delete id="admin_deleteProc">
-		DELETE FROM member WHERE user_id=#{userId}
+    	DELETE A, B
+		FROM member A
+		LEFT JOIN grade B ON A.grade = B.no
+		WHERE A.user_id = #{userId};
 	</delete>
 </mapper>
 

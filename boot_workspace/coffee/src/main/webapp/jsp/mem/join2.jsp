@@ -240,9 +240,9 @@ function pwCheck(){
 		</div>
 	
 		<div class="member_info" >
-				<input type="text" class="input_box" name="name" id="name" placeholder="${name}"><br>			
-				<input type="date" class="input_box" name="birthday" id="birthday" placeholder="${birthday}"><br>			
-				<input id="phone" type="text" class=input_box name="phone"  placeholder="${phone}"><br>
+				<input type="text" class="input_box" name="name" id="name" placeholder="이름을 입력하세요"><br>			
+				<input type="date" class="input_box" name="birthday" id="birthday" placeholder="생년월일을 입력하세요"><br>			
+				<input id="phone" type="text" class=input_box name="phone"  placeholder="'-'없이 핸드폰 번호를 입력하세요"><br>
 				<input type="text" class="input_box" id="nickName" name="nickName" oninput = "nickCheck()" placeholder="닉네임을 입력하세요"><br>
 					<span class="nick_ok">사용 가능한 닉네임입니다.</span>
 					<span class="nick_already">이미 사용중인 닉네임입니다.</span>	

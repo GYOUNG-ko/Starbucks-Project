@@ -141,7 +141,7 @@
                     <input type="text" value="${member.gradeName}" readonly>
                 </div>
                 <button type="submit">회원 수정</button>
-                <button type="button" onclick="location.href='/admin_delete'">회원 삭제</button>
+              
             </form>
         </div>
     </div>

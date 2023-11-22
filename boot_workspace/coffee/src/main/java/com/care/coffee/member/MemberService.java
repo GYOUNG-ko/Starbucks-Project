@@ -129,7 +129,7 @@ public class MemberService {
 		return "아이디 또는 비밀번호를 확인 후 다시 입력하세요.";
 	}
 	
-	public String modifyProc(MemberDTO member, String password) {
+	public String modifyProc(MemberDTO member) {
 		if(member.getPassword() == null || member.getPassword().trim().isEmpty()) {
 			return "비밀번호를 입력하세요.";
 		}
@@ -145,6 +145,7 @@ public class MemberService {
 		//저장 정보 console출력
 		System.out.println("userId : " + member.getUserId());
 		System.out.println("name : " + member.getName());
+		System.out.println("password : " + member.getPassword());
 		System.out.println("birthday : " + member.getBirthday());
 		System.out.println("phone : " + member.getPhone());
 		System.out.println("email : " + member.getEmail());
@@ -157,25 +158,21 @@ public class MemberService {
 		System.out.println("status : " + member.getStatus());
 		
 		/* 암호화 과정 */
-		/*
-		 * BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(); String
-		 * secretPass = encoder.encode(member.getPassword());
-		 * member.setPassword(secretPass);
-		 */
+		
+		  BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(); 
+		  String secretPass = encoder.encode(member.getPassword());
+		  member.setPassword(secretPass);
+		 
 		
 			int result = mapper.modifyProc(member);
 			if(result == 1) {
 				System.out.println("modify userId: "+ session.getAttribute("userId"));
-				
-				BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-				if(encoder.matches(password, member.getPassword()) == true) {
-				
+								
 				return "회원 수정 완료";
-			}
-			return "비밀번호 확인 후 다시 입력하세요.";
 		}
 		return "회원 수정을 다시 시도하세요.";
 	}
+	
 	public String deleteProc(MemberDTO member) { //회원 탈퇴
 		if(member.getPassword() == null || member.getPassword().trim().isEmpty()) {
 			return "비밀번호를 입력하세요.";

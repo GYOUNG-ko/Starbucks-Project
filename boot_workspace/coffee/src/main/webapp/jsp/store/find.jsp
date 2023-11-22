@@ -2,9 +2,32 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:import url="../default/header.jsp"/>
-<br>
-<h2>주변 매장 찾기</h2>
-<div id="map" style="width:80%;height:600px;"></div>
+
+<style>
+    .centered {
+        text-align: center;
+        text-size: 30px;
+    }
+
+    #map-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #map {
+        width: 80%;
+        height: 600px;
+    }
+</style>
+<br><br><br>
+<div class="centered">
+    <h2>주변 매장 찾기</h2>
+</div>
+<br><br><br>
+<div id="map-container" class="centered">
+    <div id="map"></div>
+</div>
 
 <script>
 	var map = new naver.maps.Map('map', {

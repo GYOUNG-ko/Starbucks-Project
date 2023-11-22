@@ -58,11 +58,11 @@ public class AdminMenuService {
 		AdminMenuDTO list = mapper.modifyList(id);
 		model.addAttribute("list", list);
 		List<AdminProductCateDTO> clist = mapper.cateList();
-		model.addAttribute("clist", clist); // 1차 카테고리
+		model.addAttribute("clist", clist);
 		List<AdminProductCateDetailDTO> dlist = mapper.detailList();
-		model.addAttribute("dlist", dlist); // 2차 카테고리
+		model.addAttribute("dlist", dlist);
 		List<AdminProductSizeDTO> slist = mapper.sizeList();
-		model.addAttribute("slist", slist); // 음료 사이즈
+		model.addAttribute("slist", slist);
 	}
 
 	public String modifyProc(AdminMenuDTO dto) {

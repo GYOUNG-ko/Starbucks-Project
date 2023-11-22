@@ -19,6 +19,10 @@ public class Admin_MemberController {
 	@Autowired private HttpSession session;
 	@Autowired private Admin_MemberMapper admin_mapper;
 	
+	@PostMapping("/admin_memberInfo")
+	public String admin_memberInfo() {
+		return "/admin/mem_memberInfo";
+	}
 	@RequestMapping("/admin_memberInfo")
 	public String admin_memberInfo(String select, String search,
 			@RequestParam(value="currentPage", required = false) String cp, Model model) {
@@ -77,41 +81,41 @@ public class Admin_MemberController {
 	
 	
 	//http://localhost:8086/dbQuiz/delete
-	@RequestMapping("/admin_delete")
-	public String admin_delete(String userId, Model model) {
-		String sessionId = (String)session.getAttribute("userId"); 
-		
-		MemberDTO member = admin_mapper.login(userId);
-		model.addAttribute("member", member);
-		List<GradeDTO> grade = admin_mapper.gradeList();
-		model.addAttribute("grade", grade);
-		
-		System.out.println("userId:"+ member.getUserId());
-		System.out.println("userId:"+ member.getDetailAddress());
-		System.out.println("userId:"+ member.getRegisterDay());
-		
-		if(sessionId.equals("admin") == false)
-			return "redirect:/admin/mem_userInfo";
-			// alert(권한이 없습니다.)라고 쓰기
-		 
-		return "/admin/mem_delete";
-	}
-	
-	@PostMapping("/amdin_deleteProc")
-	public String amdim_deleteProc(MemberDTO member, Model model) {
-		String sessionId = (String)session.getAttribute("userId");
-		if(sessionId == null)
-			return "redirect:/login/login";
-		
-		member.setUserId(sessionId);
-		String msg = admin_service.admin_deleteProc(member);
-		if(msg.equals("회원 삭제 완료")) {
-			session.invalidate();
-			return "redirect:index";
-		}
-		
-		model.addAttribute("msg", msg);
-		return "/admin/mem_delete";
-	}
+//	@RequestMapping("/admin_delete")
+//	public String admin_delete(String userId, Model model) {
+//		String sessionId = (String)session.getAttribute("userId"); 
+//		
+//		if(sessionId.equals("admin") == false)
+//			return "redirect:/admin/mem_userInfo";
+//			// alert(권한이 없습니다.)라고 쓰기
+//		
+//		MemberDTO member = admin_mapper.login(userId);
+//		model.addAttribute("member", member);
+//		List<GradeDTO> grade = admin_mapper.gradeList();
+//		model.addAttribute("grade", grade);
+//		
+//		System.out.println("userId:"+ member.getUserId());
+//		System.out.println("userId:"+ member.getDetailAddress());
+//		System.out.println("userId:"+ member.getRegisterDay());
+//		
+//		return "/admin/mem_delete";
+//	}
+//	
+//	@PostMapping("/amdin_deleteProc")
+//	public String amdim_deleteProc(MemberDTO member, String userId, Model model) {
+//		String sessionId = (String)session.getAttribute("userId");
+//		if(sessionId.equals("admin") == false)
+//			return "redirect:/admin/mem_userInfo";
+//			
+//		String result = admin_service.admin_deleteProc(member, userId);
+//		
+//		if(result.equals("회원 삭제 완료")) {
+//			return "redirect:/admin/mem_userInfo/";
+//		}else {
+//			model.addAttribute("msg", result);
+//			return "/admin/mem_delete"; //실패한 경우 메세지
+//		}
+//		
+//	}
 	
 }

@@ -113,7 +113,7 @@
 	    </table>
 		<div class = "container">
     		<div class="validation_section">
-		        <form action="modifyProc" method="post" id="f">
+		        <form action="/modifyProc" method="post" id="f">
 		            <div class="notice_box">아이디</div>
 		            	<input type="text" class="input_box" id="userId" value="${sessionScope.userId}">
 		            <div class="notice_box">비밀번호</div>
@@ -127,17 +127,17 @@
 		            <div class="notice_box">이메일</div>
 		            	<input type="text" class="input_box" name="email" value="${sessionScope.email}">
 		            <div class="notice_box">전화번호</div>
-		            	<input type="text" class="input_box" name="phone" value="${sessionScope.phone}">
+		            	<input type="text" class="input_box" name="phone"  id="phone" value="${sessionScope.phone}">
 		            <div class="notice_box">우편번호</div>
-		            	<input type="text" class="input_box" name="postcode" value="${sessionScope.postcode}">
+		            	<input type="text" class="input_box" name="postcode"  id="postcode" value="${sessionScope.postcode}">
 		            <div class="notice_box">주소</div>
-		            	<input type="text" class="input_box" name="address" value="${sessionScope.address}">
+		            	<input type="text" class="input_box" name="address"  id="address" value="${sessionScope.address}">
 		            <div class="notice_box">상세주소</div>
-		            	<input type="text" class="input_box" name="detailAddress" value="${sessionScope.detailAddress}">
+		            	<input type="text" class="input_box" name="detailAddress"  id="detailAddress" value="${sessionScope.detailAddress}">
 		            <div class="notice_box">닉네임</div>
-		            	<input type="text" class="input_box" name="nickName" value="${sessionScope.nickName}">
+		            	<input type="text" class="input_box" name="nickName"  id="nickName" value="${sessionScope.nickName}">
 		            <div class="notice_box">가입일</div>
-		            	<input type="text" class="input_box" name="registerDay" value="${sessionScope.registerDay}">
+		            	<input type="text" class="input_box" name="registerDay"  id="registerDay" value="${sessionScope.registerDay}">
 		<%--        <div class="notice_box">등급</div>
 		            	<input type="text" class="input_box" name="registerDay" value="${sessionScope.grade}"> --%>
 		            

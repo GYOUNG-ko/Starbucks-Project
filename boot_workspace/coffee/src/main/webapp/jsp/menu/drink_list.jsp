@@ -101,7 +101,7 @@
 										<li class="menuDataSet" new="N" sell="" recomm="0" sold="N">
 											<dl>
 												<dt>
-													<a href="drink_view.do?id=${list.id }" class="goDrinkView">
+													<a href="drink_view.do?id=${list.id }" class="goDrinkView" prod="9200000002487">
 														<img src="${list.picture1 }" alt="${list.nameKr }">
 													</a>
 												</dt>

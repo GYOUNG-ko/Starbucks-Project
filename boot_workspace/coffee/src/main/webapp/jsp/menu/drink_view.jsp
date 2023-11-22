@@ -188,15 +188,7 @@
 								</ul>
 							</div>
 							<div class="product_factor">
-								<p>알레르기 유발요인 : 
-								<c:choose>
-									<c:when test="${empty list.allergy }">
-									없음</p>
-									</c:when>
-									<c:otherwise>
-										${list.allergy }</p>
-									</c:otherwise>
-								</c:choose>
+								<p></p>
 							</div>
 							<!-- s: 230623 등록 버튼 위치이동 및 디자인 변경 -->
 							<div class="myDrink">
@@ -697,6 +689,7 @@
        				count: "1"
        			},
        			success: function (response) {
+       				//alert(response);
        				if (response === "success") {
        					alert("장바구니에 추가되었습니다");
        					if (confirm('장바구니로 이동할까요?')){
@@ -718,8 +711,19 @@
     			console.log(error);
     		});
     	});
-       	$(".btn_close").on("click", hidePopMyDrink); // [닫기]
+		
+       	// [닫기]
+       	$(".btn_close").on("click", hidePopMyDrink);
        		
+       	// 분류 보기 클릭 시
+       	
+       	// SKU 클릭 시
+       	
+       	// 대표 SKU HOT/ICE 선택 시
+       	
+       	// [퍼스널 옵션 >]
+       	$(".btn_ps_opt a").on("click", showPersonalOptionDetail);
+       	
        	// [옵션 초기화 하기]
        	$(".btn_reset a").on("click", function () {
        		$(".btn_init_ps_opt_cst_sku_list").each(function () {

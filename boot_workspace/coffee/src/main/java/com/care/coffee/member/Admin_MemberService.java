@@ -1,7 +1,6 @@
 package com.care.coffee.member;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -114,24 +113,32 @@ public class Admin_MemberService {
 	}
 
 
-	public String admin_deleteProc(MemberDTO member) {
-		if(member.getPassword() == null || member.getPassword().trim().isEmpty()) {
-			return "비밀번호를 입력하세요.";
-		}
-		if(member.getPassword().equals(member.getConfirm()) == false) {
-			return "두 비밀번호를 일치하여 입력하세요.";
-		}
+	public String admin_deleteProc(MemberDTO member, String userId) {
+
+		MemberDTO check = admin_mapper.login(userId);
 		
-		MemberDTO check = admin_mapper.login(member.getUserId());
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		if(check != null && encoder.matches(member.getPassword(), check.getPassword()) == true) {
-			int result = admin_mapper.admin_deleteProc(member.getUserId());
-			if(result == 1)
+		
+		System.out.println("userId : " + userId);
+		System.out.println("name : " + member.getName());
+		System.out.println("birthday : " + member.getBirthday());
+		System.out.println("phone : " + member.getPhone());
+		System.out.println("email : " + member.getEmail());
+		System.out.println("address : " + member.getAddress());
+		System.out.println("detailAdress : " + member.getDetailAddress());
+		System.out.println("nickname : " + member.getNickName());
+		System.out.println("registerDay : " + member.getRegisterDay());
+		System.out.println("grade : " + member.getGrade());
+		System.out.println("coupon : " + member.getCoupon());
+		System.out.println("status : " + member.getStatus());
+		
+		
+		if(check != null) {
+			int result = admin_mapper.admin_deleteProc(member, userId);
+			if(result == 1) {
 				return "회원 삭제 완료";
-			return "회원 삭제를 다시 시도하세요.";
+			}
 		}
-		
-		return "아이디 또는 비밀번호를 확인 후 입력하세요";
+		return "회원 삭제를 다시 시도하세요";
 	}
 
 
@@ -140,8 +147,4 @@ public class Admin_MemberService {
 	 * public memberDTO getMember(String sessionId) { // TODO Auto-generated method
 	 * stub return null; }
 	 */
-
-
-
-		
-	}
+}

@@ -32,6 +32,7 @@ window - preferences - Maven - "Download Artifact Javadoc" check
 	</resultMap>
 	
 	<!-- 메뉴 목록 -->
+	<!-- id,cate,name_kr,name_en,content,drink_size,kcal,sodium,cholesterol,suger,protein,allergy,price,picture -->
 	<select id="menuList" resultMap="adminMenu">
 		select A.*,B.picture1
 		from product A 
@@ -54,11 +55,12 @@ window - preferences - Maven - "Download Artifact Javadoc" check
 	
 	<!-- 메뉴추가 -->
 	<insert id="menuInsert">
+		<!-- insert into product(id,cate,name_kr,name_en,content,drink_size,kcal,sodium,cholesterol,suger,protein,allergy,price)
+		values(product_seq.nextval,#{cate},#{nameKr},#{nameEn},#{content},#{drinkSize},#{kcal},#{sodium},#{cholesterol},#{suger},#{protein},#{allergy},#{price}) -->
+		
 		INSERT ALL
-	    	INTO product(id,cate,cate_detail,name_kr,name_en,content,
-	    		drink_size,kcal,cholesterol,protein,sodium,suger,caffeine,allergy,price)
-	    	VALUES (product_seq.nextval,#{cate},#{cateDetail},#{nameKr},#{nameEn},#{content},
-	    		#{drinkSize},#{kcal},#{cholesterol},#{protein},#{sodium},#{suger},#{caffeine},#{allergy},#{price})
+	    	INTO product(id,cate,cate_detail,name_kr,name_en,content,drink_size,kcal,cholesterol,protein,sodium,suger,caffeine,allergy,price)
+	    	VALUES (product_seq.nextval,#{cate},#{cateDetail},#{nameKr},#{nameEn},#{content},#{drinkSize},#{kcal},#{cholesterol},#{protein},#{sodium},#{suger},#{caffeine},#{allergy},#{price})
 	    	
 	    	INTO product_picture (num, picture1)
 	   	 	VALUES (product_seq.nextval, #{picture1})
@@ -108,7 +110,6 @@ window - preferences - Maven - "Download Artifact Javadoc" check
 	    WHERE num = #{id}
 	</update> -->
 	
-	<!-- product 테이블 수정 -->
 	<update id="modify1">
 	    UPDATE product 
 	    SET cate = #{cate},cate_detail = #{cateDetail},name_kr = #{nameKr},name_en = #{nameEn},content = #{content}, 
@@ -117,20 +118,16 @@ window - preferences - Maven - "Download Artifact Javadoc" check
 	    WHERE id = #{id}
 	</update>
 	
-	<!-- product_picture 테이블 수정 -->
 	<update id="modify2">
 	    UPDATE product_picture 
 	    SET picture1 = #{picture1} 
 	    WHERE num = #{id}
 	</update>
 	
-	
-	<!-- product 테이블 삭제 -->
 	<delete id="delete1">
         DELETE FROM product WHERE id = #{no}
 	</delete>
         
-	<!-- product_picture 테이블 삭제 -->
 	<delete id="delete2">
         DELETE FROM product_picture WHERE num = #{no}
 	</delete>

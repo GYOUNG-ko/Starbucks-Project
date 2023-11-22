@@ -33,7 +33,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script type="text/javascript">
-
+//페이지가 로드될 때 실행될 코드
 $(document).ready(function() {
     // 주 카테고리 선택 상자의 값이 변경될 때의 동작을 정의
     $('#mainCate').change(function() {
@@ -43,8 +43,10 @@ $(document).ready(function() {
         var subCategorySelect = $('#subCate');
         // Ajax를 사용하여 서버에서 2차 카테고리 데이터를 가져오기
         $.get('/getSubcategories', { "num": selectedMainCategory }, function(data) {
-            subCategorySelect.empty(); // 하위 카테고리 선택 상자의 옵션을 비움
-            $.each(data, function(index, subCategory) { // 반복해서 하위 카테고리 옵션을 생성하고 추가
+            // 하위 카테고리 선택 상자의 옵션을 비움
+            subCategorySelect.empty();
+            // 서버에서 받은 데이터를 순회하면서 하위 카테고리 옵션을 생성하고 추가
+            $.each(data, function(index, subCategory) {
                 subCategorySelect.append($('<option>').val(subCategory.cateId).text(subCategory.name2));
             });
         });
@@ -52,6 +54,7 @@ $(document).ready(function() {
     
     $('#insertForm').submit(function(e) {
         e.preventDefault(); // 폼 제출을 막음
+		
         $.ajax({
             url: 'insertProc',
             method: 'POST',

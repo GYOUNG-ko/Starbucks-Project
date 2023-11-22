@@ -49,7 +49,25 @@
 			<p class="orderStep">
 				<img src="//img.echosting.cafe24.com/skin/base_ko_KR/order/img_order_step1.gif" alt="01 장바구니">
 			</p>
+			<!-- <div class="xans-order xans-order-dcinfo  typeMember ">
+				<div class="information">
+					<h3 class="title">혜택정보</h3>
+					<div class="description">
+						<div class="member displaynone">
+						</div>
+						<ul class="mileage">
+							<li><a href="/myshop/mileage/historyList.html">가용적립금 :
+									<strong>0원</strong>
+							</a></li>
+							<li class="displaynone">
+							<a href="/myshop/deposits/historyList.html">예치금 : <strong></strong></a></li>
+							<li><a href="/myshop/coupon/coupon.html">쿠폰 : <strong>0개</strong></a></li>
+						</ul>
+					</div>
+				</div>
+			</div> -->
 			<div class="orderListArea ec-base-table typeList gBorder">
+<!-- 					 style="width: 1200px; margin: 30 auto;" -->
 				<table border="1" summary=""
 					class="xans-element- xans-order xans-order-normnormal xans-record-">
 					<colgroup>
@@ -71,6 +89,9 @@
 							<th scope="col" colspan="2">상품정보</th>
 							<th scope="col">수량</th>
 							<th scope="col" colspan="3">상품구매금액</th>
+							<!-- <th scope="col">***</th> -->
+							<!-- <th scope="col">***</th> -->
+							<!-- <th scope="col">***</th> -->
 							<th scope="col">선택</th>
 						</tr>
 					</thead>
@@ -92,17 +113,17 @@
 							<input type="hidden" class="individual_price_input" value="${list.price}">
 							<input type="hidden" class="individual_count_input" value="${list.count}">
 							<input type="hidden" class="individual_totalPrice_input" value="${list.price * list.count}">
-							<input type="checkbox" value="${list.prodNum }" class="sub individual_cart_checkbox" 
-								data-prodId="${list.prodNum }"  checked="checked">
+							<input type="checkbox" value="${list.id }" class="sub individual_cart_checkbox" data-prodNum="${list.prodNum }"  checked="checked">
 						</td>
 						<td class="thumb gClearLine">
-						<a href="/menu/drink_view.do?id=${list.id }">
-						<img src="${list.picture1 }" onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" 
-							alt="사진1"></a>
+						<%-- <a href="drink_view.do?id=${list.id }"> --%>
+						<a href="drink_list.do">
+						<img src="${list.picture1 }"
+								onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';" alt="사진1"></a>
 						</td>
 						<td class=" gClearLine" colspan="2">
 						<strong class="name">
-							<a href="/menu/drink_view.do?id=${list.id }" class="ec-product-name">${list.nameKr }</a>
+							<a href="해당 상품 뷰페이지로 이동" class="ec-product-name">${list.nameKr }</a>
 							<br>${list.nameEn }
 						</strong>
 						<ul class="xans-element- xans-order xans-order-optionall option">
@@ -112,25 +133,28 @@
 						
 						<!-- 수량 -->
 						<td class="right">
-							<span class=""> 
-							<span class="ec-base-qty">
-								<input id="quantity_id_${list.prodNum }" name="quantity_name_0" size="2" value="${list.count }" type="text">
-								
-								<a href="javascript:;" class="up" alt="수량증가">
-								<img src="//img.echosting.cafe24.com/skin/base/common/btn_quantity_up.gif"></a>
-								
-								<a href="javascript:;" class="down" alt="수량감소">
-								<img src="//img.echosting.cafe24.com/skin/base/common/btn_quantity_down.gif"></a>
-							</span> 
-								<a href="javascript:;" class="btnNormal quantity_modify_btn gBlank5" data-item-id="${list.prodNum }">변경</a>
-							</span>
+						<span class=""> 
+						<span class="ec-base-qty">
+							<input id="quantity_id_${list.prodNum }" name="quantity_name_0" size="2" value="${list.count }" type="text">
 							
-							<!-- 수량 조정 form -->
-							<form action="update" method="post" class="quantity_update_form">
-								<input type="hidden" name="userId" value="${sessionScope.userId}">
-								<input type="hidden" name="count" class="update_count">
-								<input type="hidden" name="prodNum" class="update_prodNum">
-							</form>
+							<a href="javascript:;" class="up" onclick="">
+							<img src="//img.echosting.cafe24.com/skin/base/common/btn_quantity_up.gif" alt="수량증가"></a>
+							
+							<a href="javascript:;" class="down" onclick="">
+							<img src="//img.echosting.cafe24.com/skin/base/common/btn_quantity_down.gif" alt="수량감소"></a>
+						</span> 
+							<a href="javascript:;" class="btnNormal quantity_modify_btn gBlank5" data-item-id="${list.prodNum }">변경</a>
+						</span>  <!-- onclick="updateQuantity()" -->
+						<%-- <span><input type="number" class="quantity-input" data-item-id="${list.prodNum }" value="${list.count }"></span> --%>
+						<span class="displaynone">1</span>
+						
+						<!-- 수량 조정 form -->
+						<form action="update" method="post" class="quantity_update_form">
+							<input type="hidden" name="userId" value="${sessionScope.userId}">
+							<input type="hidden" name="count" class="update_count">
+							<input type="hidden" name="prodNum" class="update_prodNum">
+						</form>
+						
 						</td>
 						
 						<!-- 구매금액 -->
@@ -142,9 +166,24 @@
 								<input type="hidden" class="individual_price_value" value="${list.count * list.price}" />
 							</div>
 						</td>
+						<!-- <td rowspan="1" class=""><span></span>
+							***
+						</td> -->
+						<!-- <td class="right">
+							***
+						</td> -->
+						<!-- <td rowspan="1" class="">
+							<p class="">
+								***
+								<span class="displaynone"><br>
+								</span><br>
+							</p>
+						</td> -->
 						<td class="button">
-							<a href="javascript:;" class="btnNormal delete_btn" data-prod="${list.prodNum }">
-							<i class="icoDelete"></i> 삭제</a>
+							<a href="javascript:;" class="btnSubmit" onclick="Basket.orderBasketItem(0);">주문하기</a>
+							<!-- <a href="javascript:;" class="btnNormal" onclick="BasketNew.moveWish(0);">관심상품등록</a>  -->
+							<a href="javascript:;" class="btnNormal delete_btn" data-prodNum="${list.prodNum }">
+							<i class="icoDelete"></i> 삭제</a><!-- onclick="Basket.deleteBasketItem(0);" -->
 							
 							<!-- 삭제 form -->
 							<form action="delete" method="post" class="delete_form">
@@ -165,17 +204,20 @@
 			<div class="xans-element- xans-order xans-order-weight displaynone "> </div>
 			<div class="xans-element- xans-order xans-order-selectorder ec-base-button ">
 				<span class="gLeft">
-				<form action="" method="post">
-					<input type="hidden" id="totalPrice" name="totalPrice" value="">
+				<form action="insertBuys" method="get">
+					<input type="hidden" name="totalPrice" value="">
 					<input type="hidden" name="itemCode" id="itemCode" value="">
 					<input type="hidden" name="buyCnt" id="buyCnt" value="">
+					<!-- <input type="hidden" name="cartCode" id="cateCode" value=""> -->
+					<input class="btn" type="button" value="선택구매" onclick="goBuy();">
+					<!-- <input class="selectDelete btn" type="button" value="선택삭제"> -->
 				</form>
 					<strong class="text">선택상품을</strong>
-					<a href="#" class="btnEm selectDelete">
+					<a href="#none" class="btnEm selectDelete" onclick="deleteBasket()">
 						<i class="icoDelete"></i> 삭제하기</a>
 				</span>
 				<span class="gRight">
-					<a href="#" class="btnNormal" id="emptyBasketBtn" onclick="Basket.emptyBasket()">장바구니비우기</a>
+					<a href="#none" class="btnNormal"id="emptyBasketBtn" onclick="Basket.emptyBasket()">장바구니비우기</a>
 				</span>
 			</div>
 			<!-- 총 주문금액 : 국내배송상품 -->
@@ -223,6 +265,12 @@
 									</strong> 
 								</div>
 							</td>
+							<!-- <td class="total_mileage_price_area displaynone">
+								<div class="box txt16">
+									<strong>최대 <span id="mTotalMileagePrice"
+										class="txt23">원</span></strong>
+								</div>
+							</td> -->
 						</tr>
 					</tbody>
 				</table>
@@ -230,17 +278,60 @@
 			
 			<!-- 구매버튼 -->
 			<div class="xans-element- xans-order xans-order-totalorder ec-base-button justify">
-				<a href="#" onclick="goBuyAll()" link-order="/order/orderform.html?basket_type=all_buy"
+				<a href="#none" onclick="Basket.orderAll(this)" link-order="/order/orderform.html?basket_type=all_buy"
 					link-login="/member/login.html" class="btnSubmitFix sizeM">전체상품주문</a>
-				<a href="#" onclick="goBuyCheck()" link-order="/order/orderform.html?basket_type=all_buy"
+				<a href="#none" onclick="orderSelectBasket(this)" link-order="/order/orderform.html?basket_type=all_buy"
 					link-login="/member/login.html" class="btnEmFix sizeM ">선택상품주문</a>
 				<span class="gRight"> <a href="/" class="btnNormalFix sizeM">쇼핑계속하기</a> </span>
+				
+				<!-- 네이버 체크아웃 구매 버튼  -->
+				<div id="NaverChk_Button"></div>
+				<!--상품상세페이지에 추가되는 앱 관련 결제버튼 div-->
+				<div id="appPaymentButtonBox"></div>
 			</div>
 		</div>
+
+		<!-- 이용안내 -->
+		<!-- <div class="xans-element- xans-order xans-order-basketguide ec-base-help">
+			<h3>이용안내</h3>
+			<div class="inner">
+				<h4>장바구니 이용안내</h4>
+				<ol>
+					<li class="item1">선택하신 상품의 수량을 변경하시려면 수량변경 후 [변경] 버튼을 누르시면
+						됩니다.</li>
+					<li class="item2">[쇼핑계속하기] 버튼을 누르시면 쇼핑을 계속 하실 수 있습니다.</li>
+					<li class="item3">장바구니와 관심상품을 이용하여 원하시는 상품만 주문하거나 관심상품으로
+						등록하실 수 있습니다.</li>
+					<li class="item4">파일첨부 옵션은 동일상품을 장바구니에 추가할 경우 마지막에 업로드 한 파일로
+						교체됩니다.</li>
+					<li class="item5  ">해외배송 상품과 국내배송 상품은 함께 결제하실 수 없으니 장바구니 별로
+						따로 결제해 주시기 바랍니다.</li>
+					<li class="item6  ">해외배송 가능 상품의 경우 국내배송 장바구니에 담았다가 해외배송
+						장바구니로 이동하여 결제하실 수 있습니다.</li>
+				</ol>
+				<h4>무이자할부 이용안내</h4>
+				<ol>
+					<li class="item1">상품별 무이자할부 혜택을 받으시려면 무이자할부 상품만 선택하여 [주문하기]
+						버튼을 눌러 주문/결제 하시면 됩니다.</li>
+					<li class="item2">[전체 상품 주문] 버튼을 누르시면 장바구니의 구분없이 선택된 모든 상품에
+						대한 주문/결제가 이루어집니다.</li>
+					<li class="item3">단, 전체 상품을 주문/결제하실 경우, 상품별 무이자할부 혜택을 받으실 수
+						없습니다.</li>
+					<li class="item4  ">무이자할부 상품은 장바구니에서 별도 무이자할부 상품 영역에 표시되어,
+						무이자할부 상품 기준으로 배송비가 표시됩니다.<br>실제 배송비는 함께 주문하는 상품에 따라 적용되오니
+						주문서 하단의 배송비 정보를 참고해주시기 바랍니다.
+					</li>
+					<li class="item4 displaynone">무이자할부 상품은 장바구니에서 별도 무이자할부 상품
+						영역에 표시됩니다.</li>
+				</ol>
+			</div>
+		</div> -->
 	</div>
 </div>
 
 </div>
+	<!-- //wrap -->
+
 	<!-- 결제를 위한 필수 영역 -->
 	<div id="progressPaybar" style="display: none;">
 		<div id="progressPaybarBackground" class="layerProgress"></div>
@@ -261,34 +352,39 @@
 	</div>
 	<!-- // 결제를 위한 필수 영역 -->
 
+	<style>
+[pandassi-banner-group]:not([pandassi-banner-group="ready"]) {
+	display: none !important;
+}
+</style>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script type="text/javascript">
+
 	// 수량 변경 액션
 	$(".up").on("click", function(){
 		let quantity = $(this).parent("span").find("input").val();
 		$(this).parent("span").find("input").val(++quantity);
-		// "수량 증가" 버튼을 클릭하면 현재 수량을 가져와서 1 증가시킵니다.
 	});
 	$(".down").on("click", function(){
 		let quantity = $(this).parent("span").find("input").val();
 		$(this).parent("span").find("input").val(--quantity);
-		// "수량 감소" 버튼을 클릭하면 현재 수량을 가져와서 1 감소시킵니다.
 	});
 	
 	// 수량 수정 버튼
 	$(".quantity_modify_btn").on("click", function(){
-		// "수정" 버튼을 클릭하면 해당 상품의 ID를 가져옵니다.
 		let prodNum = $(this).data("item-id");
-		// 상품의 수량을 입력한 값으로 업데이트합니다.
 		let count = $("input#quantity_id_" + prodNum).val();
+		console.log(prodNum, count);
 		$(".update_count").val(count);
 		$(".update_prodNum").val(prodNum);
 		$(".quantity_update_form").submit();
 	});
 	
-	// 장바구니 개별 삭제 버튼
-	$(".delete_btn").on("click", function(e) {
-		const prodNum = $(this).data("prod");
+	// 장바구니 삭제 버튼
+	$(".delete_btn").on("click", function(e){
+		const prodNum = $(".delete_btn").attr("data-prodNum");
 		if(confirm("정말로 삭제하시겠습니까?")) {		// 삭제여부 확인
 			$(".delete_prodNum").val(prodNum);  // form의 prodNum에 값 저장
 			$(".delete_form").submit(); 		// 폼 전송
@@ -297,47 +393,16 @@
 	});
 	
 	// 선택구매버튼 클릭시
-	function goBuyCheck() {
+	function goBuy() {
 		// 선택버튼을 클릭한 개수
 		const checkedCnt = document.querySelectorAll('.sub:checked').length;
 		if (checkedCnt == 0) {
 			alert("선택한 상품이 없습니다");
 			return; // 함수종료
 		}
+		console.log(checkedCnt);
 		// 체크한 항목들을 checkedBoxes에 넣음
 		const checkedBoxes = document.querySelectorAll('.sub:checked');
-		
-		let totalPrice = 0;
-		let itemCodes = '';
-		let buyCnts = '';
-		let cartCodes = '';
-		
-		for (const checkBox of checkedBoxes) { // 체크된 checkedBoxes들 중에 하나씩 빼서 checkBox에 넣는다
-			const price = $(checkBox).closest('tr').find('.individual_price_value').val(); // 가격
-			totalPrice += parseInt(price);
-			
-			// 제품ID
-			const itemCode = checkBox.value;
-			itemCodes += itemCode + ','; //ITEM_001,ITEM_002,
-			
-			// 구매수량
-			const buyCnt = checkBox.closest('tr').querySelector('[name="quantity_name_0"]').value;
-			buyCnts = buyCnts + buyCnt +',';
-		}
-		kakaoBuy(totalPrice);
-	}
-	
-	// 전체구매버튼 클릭시
-	function goBuyAll() {
-		// 체크박스 개수
-		const checkedCnt = document.querySelectorAll('.sub').length;
-		if (checkedCnt == 0) {
-			alert("상품이 없습니다");
-			return; // 함수종료
-		}
-		console.log(checkedCnt);
-		// 항목들을 checkedBoxes에 넣음
-		const checkedBoxes = document.querySelectorAll('.sub');
 		console.log(checkedBoxes);
 		
 		let totalPrice = 0;
@@ -345,25 +410,24 @@
 		let buyCnts = '';
 		let cartCodes = '';
 		
-		// checkedBoxes들 중에 하나씩 빼서 checkBox에 넣는다
+		// 체크된 checkedBoxes들 중에 하나씩 빼서 checkBox에 넣는다
 		for (const checkBox of checkedBoxes) {
 			// 가격
 			const price = $(checkBox).closest('tr').find('.individual_price_value').val();
-				//console.log(price);
-			//alert("개별금액"+price);
+			//console.log(price);
 			totalPrice += parseInt(price);
 			//console.log("최종가격 ",totalPrice);
 			
 			// 제품ID
 			const itemCode = checkBox.value;
-				//console.log("코드" + itemCode);
+			//console.log("코드" + itemCode);
 			itemCodes += itemCode + ','; //ITEM_001,ITEM_002,
 			//console.log(itemCodes);
 			
 			// 구매수량
-				//const buyCnt = checkBox.closest('tr').children[3].innerText; 
+			//const buyCnt = checkBox.closest('tr').children[3].innerText; 
 			const buyCnt = checkBox.closest('tr').querySelector('[name="quantity_name_0"]').value;
-				//console.log("수량",buyCnt);
+			//console.log("수량",buyCnt);
 			buyCnts = buyCnts + buyCnt +',';
 			//console.log(buyCnts);
 			
@@ -371,47 +435,19 @@
 			//const cartCode= checkBox.dataset.cartcode;//jsp에서 cartCode이지만 js는 항상 소문자로 가져오기때문에 소문자로 작성해야 오류발생x
 			//console.log(checkBox.dataset);// 개발자콘솔창확인시, data-cart-code/data-cartCode(data-cartcode) 의 차이점 파악하기위해 
 			//cartCodes = cartCodes + cartCode +',';//CART_001.CART_002,..
+			
 		}
-		alert("가격"+totalPrice);
-		alert("아이템"+itemCodes);
-		alert("수량"+buyCnts);
-		
-		kakaoBuy(totalPrice);
-		//document.querySelector('form[action="insertBuys"]').submit();
+		document.querySelector('form[action="insertBuys"]').submit();
 	}
 	
-	function kakaoBuy(totalPrice){
-		let discountPrice = 0
-		let usePoint = 0
-		
-		//alert(totalPrice);
-		// 카카오페이 결제전송
-		$.ajax({
-			type:'get'
-			,async:false
-			,url:'/pay/middle'
-			,data:{
-				total_amount: totalPrice
-				,payUserName: name
-				,sumPrice:totalPrice
-				,discountPrice:discountPrice
-				,totalPrice:totalPrice
-				,usePoint:usePoint
-			},
-			success:function(response){
-				window.open(response.next_redirect_pc_url,"width=500, height=500")
-			}
-		})
-}
-	
-	
 	$(".selectDelete").click(function(){
+		console.log("삭제1");
 		var sessionId = "${sessionScope.userId}";
 		
 		if(confirm("정말 삭제하시겠습니까?")) {
 			var checkArr = new Array();
-			$("input.sub:checked").each(function() { // 모든 체크된 .sub 체크박스를 반복하고 
-				checkArr.push($(this).attr("data-prodId")); // ID를 배열에 추가
+			$("input.sub:checked").each(function() {
+				checkArr.push($(this).attr("data-prodNum"));
 			});
 			if (checkArr.length > 0) {
 				$.ajax({
@@ -430,6 +466,7 @@
 			} else {
 				alert("선택하신 상품이 없습니다");
 			}
+			
 		}
 	});
 	
@@ -437,22 +474,28 @@
 
 <script type="text/javascript">
 	$(document).ready(function () {
-		setTotalInfo(); // 최종 주문정보 업데이트
+		/* 종합 세션정보 삽입 */
+		setTotalInfo();
 	});
+	
+	/* 체크여부에 따라 종합정보 변화 */
+	/* $(".sub").on("change", function(){
+		setTotalInfo($(".cart_info_td"));
+	}); */
 	
 	/* 체크박스 전체 선택 */
 	$("#all").on("click", function() {
-        const isChecked = $(this).prop("checked"); // "전체" 체크박스가 선택되었는지 확인
-        $(".sub").prop("checked", isChecked);  // 모든 .sub 체크박스를 "전체"체크박스와 일치하게 설정
+        const isChecked = $(this).prop("checked");
+        $(".sub").prop("checked", isChecked);
         setTotalInfo($(".cart_info_td"));
     });
 	
 	/* 상품 체크박스 선택에 따른 전체선택 변경 */
     $(".sub").on("click", function() {
-        if ($(".sub:checked").length === $(".sub").length) { // 선택된 .sub 체크박스의 개수
-            $("#all").prop("checked", true); // 만약 모든 .sub 체크박스가 선택되었을 경우, "전체"체크박스 선택
+        if ($(".sub:checked").length === $(".sub").length) {
+            $("#all").prop("checked", true);
         } else {
-            $("#all").prop("checked", false); // 모든 .sub 체크박스가 선택되지 않았을때, "전체"체크박스 해제
+            $("#all").prop("checked", false);
         }
         setTotalInfo($(".cart_info_td"));
     });
@@ -461,10 +504,10 @@
 	function setTotalInfo() {
 		let totalPrice = 0; // 총 금액
 		let totalCount = 0; // 총 개수
-		let totalKind = 0;  // 총 종류 개수
+		let totalKind = 0;  // 종류 개수
 	    
 		$(".cart_info_td").each(function(index, element){
-			if($(element).find(".sub").is(":checked") === true){ // 만약 .sub 체크박스가 선택되어 있으면
+			if($(element).find(".sub").is(":checked") === true){
 				// 총 금액
 				totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
 				// 총 개수
@@ -477,6 +520,8 @@
 		$(".totalPrice_span").text(totalPrice.toLocaleString());
 		$(".totalCount_span").text(totalCount);
 	}
+	
+	
 </script>
 
 <script type="text/javascript">
@@ -514,13 +559,6 @@
         updateCartItemQuantity(itemID, newQuantity);
     });
 	
-</script>
-
-<!-- --------------------결제 추가 ----------------------->
-
-<script>
-
-
 </script>
 
 <script type="text/javascript">

@@ -24,13 +24,16 @@ public class MenuService {
 	}
 
 	public String cartInsert(String sessionId, int count, int prodNum) {
-		if (sessionId == "") { 
+		System.out.println("sessionId : "+sessionId);
+		if (sessionId == "") { // 로그인 확인
 			return "로그인 필요";
 		}
 		// 장바구니에 있는지 중복확인
-		String check = mapper.cartCheck(sessionId, prodNum);
-
+		String check = "0";
+		check = mapper.cartCheck(sessionId, prodNum);
+		System.out.println("check : "+check);
 		if(check != null) {
+			System.out.println("중복이네요");
 			if (check.equals(sessionId)) {
 				return "장바구니 중복";
 			}
@@ -46,20 +49,21 @@ public class MenuService {
 		model.addAttribute("list", clist);
 	}
 	
-	//장바구니 모두 비우기
+//	장바구니 모두 비우기
 	public String cartClear(String userId) {
 		int result = mapper.cartClear(userId);
+		System.out.println("장바구니"+result);
 		if (result > 0)
 			return "장바구니 비우기 완료";
 		return "장바구니 비우기 오류";
 	}
 	
-//	장바구니 수량 변경 (Service)
+//	장바구니 수량 변경
 	public int modifyCount(CartDTO cart) {
 		return mapper.modifyCount(cart);
 	}
 	
-//	장바구니 삭제 (Service)
+//	장바구니 삭제
 	public int deleteCart(int prodNum, String userId) {
 		return mapper.deleteCart(prodNum, userId);
 	}
