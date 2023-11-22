@@ -80,14 +80,18 @@ public class MenuController {
 	}
 	
 	@RequestMapping("cart/{userId}")
-	public String cart(@PathVariable("userId") String userId, Model model) {
+	public String cart(@PathVariable(name = "userId", required = false) String userId, Model model) {
 //		service.menuList(model);
 		service.cartList(userId, model);
 		return "menu/cart";
 	}
 	
-	@RequestMapping("cart")
+	@RequestMapping("cart/")
 	public String cart(CartDTO cart) {
+		String sessionId = (String)session.getAttribute("userId");
+		
+		if(sessionId == null)
+			return "redirect:/login";
 		return "menu/cart"+ cart.getUserId();
 	}
 	

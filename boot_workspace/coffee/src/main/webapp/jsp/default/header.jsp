@@ -46,6 +46,16 @@
 <link href="/css/style_whatsnew.css?v=20220221" rel="stylesheet">
 <link href="/common/css/style_msr.css?v=211129" rel="stylesheet">
 
+<script type="text/javascript">
+	function goCart() {
+		var userId = "${userId}";
+		if(userId == "") {
+			alert("로그인이 필요합니다");
+			location.href='/login';
+		}else
+			location.href='/menu/cart/${userId}';
+	}
+</script>
 
 <script type="text/javascript">
 var eFrequencyYn = 'N';
@@ -530,7 +540,8 @@ if (div.style.display === 'none') {
 							<c:otherwise>	
 								<li class="util_nav02"><a href="/mem/myinfo">My Starbucks</a></li>
 								<li class="util_nav03"><a href="/store/find.do">Find a Store</a></li>
-								<li class="util_nav04"><a href="/menu/cart/${userId}">My Cart</a></li>
+								<li class="util_nav04" onclick="goCart()"><a href="#">My Cart</a></li>
+								<%-- <a href="/menu/cart/${userId}">My Cart</a></li> --%>
 							</c:otherwise>
 						</c:choose>
 						</ul>
